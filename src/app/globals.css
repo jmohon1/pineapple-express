@@ -2,25 +2,94 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --button-bg: #32373c;
+  --overlay-bg: rgba(0, 0, 0, 0.85);
+  --accent: #faef3b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-button: var(--button-bg);
+  --color-overlay: var(--overlay-bg);
+  --color-accent: var(--accent);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+/* Animated pineapple background */
+@keyframes pineapple-bg-scroll {
+  0% {
+    background-position: 0vw 110vh;
+  }
+  100% {
+    background-position: 100vw 80vh;
+  }
+}
+
+.pineapple-bg {
+  background-image: url("https://pineappleexpressma.com/wp-content/uploads/2024/10/pineapple-bg-final-tp.png");
+  background-repeat: repeat;
+  animation: pineapple-bg-scroll 30s linear infinite alternate;
+}
+
+@media (max-width: 768px) {
+  .pineapple-bg {
+    animation-duration: 20s;
+  }
+}
+
+@media (max-width: 680px) {
+  .pineapple-bg {
+    animation: none;
+  }
+}
+
+/* Hero text font-weight wave animation */
+@keyframes font-weight-wave {
+  0%,
+  30%,
+  100% {
+    font-weight: 900;
+  }
+  15% {
+    font-weight: 100;
+  }
+}
+
+.hero-heading {
+  font-family: var(--font-kanit), system-ui, sans-serif;
+}
+
+/* Holder: inline-flex + relative to contain the absolute duplicate */
+.hero-word-holder {
+  display: inline-flex;
+  position: relative;
+}
+
+/* Invisible spacer at weight 700 — reserves consistent layout width */
+.hero-word-spacer {
+  display: block;
+  opacity: 0;
+  font-weight: 700;
+}
+
+/* Visible duplicate — absolutely positioned, animates font-weight */
+.hero-word-duplicate {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: font-weight-wave 2.8s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+    infinite forwards;
+}
+
+.hero-word-static {
+  font-weight: 100;
 }
