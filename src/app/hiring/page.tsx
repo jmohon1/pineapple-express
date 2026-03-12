@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import PageHero from "@/components/PageHero";
+import { sendHiringEmail } from "@/app/actions/email";
 
 const availabilityOptions = [
   "Part Time",
@@ -12,6 +14,44 @@ const availabilityOptions = [
 ];
 
 export default function HiringPage() {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const checkedAvailability = availabilityOptions.filter(
+      (_, i) => (form.elements.namedItem(`availability-${i}`) as HTMLInputElement)?.checked
+    );
+
+    const formData = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      town: (form.elements.namedItem("town") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      availability: checkedAvailability,
+      drivingExperience: (form.elements.namedItem("drivingExperience") as HTMLTextAreaElement).value,
+      cannabisExperience: (form.elements.namedItem("cannabisExperience") as HTMLTextAreaElement).value,
+      microsoftOffice: (form.elements.namedItem("microsoftOffice") as HTMLTextAreaElement).value,
+      managementExperience: (form.elements.namedItem("managementExperience") as HTMLTextAreaElement).value,
+      attentionToDetail: (form.elements.namedItem("attentionToDetail") as HTMLTextAreaElement).value,
+      typeOfWork: (form.elements.namedItem("typeOfWork") as HTMLTextAreaElement).value,
+      coverLetter: (form.elements.namedItem("coverLetter") as HTMLTextAreaElement).value,
+    };
+
+    const result = await sendHiringEmail(formData);
+
+    if (result.success) {
+      setStatus("sent");
+      form.reset();
+    } else {
+      setStatus("error");
+      setErrorMsg(result.error || "Something went wrong.");
+    }
+  }
+
   return (
     <>
       <PageHero
@@ -20,17 +60,16 @@ export default function HiringPage() {
       />
 
       <div className="mx-auto max-w-3xl px-6 py-12 md:px-12 md:py-16">
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="space-y-8"
-        >
+        <form onSubmit={handleSubmit} className="space-y-8">
           {/* Name */}
           <div>
             <label className="block text-sm font-bold uppercase tracking-wider mb-2">
               Your Name
             </label>
             <input
+              name="name"
               type="text"
+              required
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400"
               placeholder="Your full name"
             />
@@ -42,7 +81,9 @@ export default function HiringPage() {
               Town You Live In
             </label>
             <input
+              name="town"
               type="text"
+              required
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400"
               placeholder="Your town"
             />
@@ -54,7 +95,9 @@ export default function HiringPage() {
               Your Email
             </label>
             <input
+              name="email"
               type="email"
+              required
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400"
               placeholder="your@email.com"
             />
@@ -66,12 +109,16 @@ export default function HiringPage() {
               Please Describe Your Availability
             </label>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-              {availabilityOptions.map((option) => (
+              {availabilityOptions.map((option, i) => (
                 <label
                   key={option}
                   className="flex items-center gap-2 text-sm font-mono cursor-pointer"
                 >
-                  <input type="checkbox" className="h-4 w-4 accent-black" />
+                  <input
+                    type="checkbox"
+                    name={`availability-${i}`}
+                    className="h-4 w-4 accent-black"
+                  />
                   {option}
                 </label>
               ))}
@@ -84,6 +131,7 @@ export default function HiringPage() {
               Please Describe Your Driving Experience
             </label>
             <textarea
+              name="drivingExperience"
               rows={3}
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
               placeholder="Describe your driving experience..."
@@ -96,6 +144,7 @@ export default function HiringPage() {
               Please Describe Your Cannabis Industry Experience
             </label>
             <textarea
+              name="cannabisExperience"
               rows={3}
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
               placeholder="Describe any cannabis industry experience..."
@@ -108,6 +157,7 @@ export default function HiringPage() {
               Please Describe Your Experience With Microsoft Office Suite
             </label>
             <textarea
+              name="microsoftOffice"
               rows={3}
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
               placeholder="Describe your proficiency level..."
@@ -120,6 +170,7 @@ export default function HiringPage() {
               Please Describe Your Management Or Team Leader Experience
             </label>
             <textarea
+              name="managementExperience"
               rows={3}
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
               placeholder="Describe any management experience..."
@@ -132,6 +183,7 @@ export default function HiringPage() {
               Please Describe Your Attention To Detail
             </label>
             <textarea
+              name="attentionToDetail"
               rows={3}
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
               placeholder="Describe your attention to detail..."
@@ -144,6 +196,7 @@ export default function HiringPage() {
               Please Describe The Type Of Work You Enjoy
             </label>
             <textarea
+              name="typeOfWork"
               rows={3}
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
               placeholder="Describe the type of work you enjoy..."
@@ -156,30 +209,29 @@ export default function HiringPage() {
               Cover Letter / Comments
             </label>
             <textarea
+              name="coverLetter"
               rows={5}
               className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
               placeholder="Tell us about yourself..."
             />
           </div>
 
-          {/* Resume Upload */}
-          <div>
-            <label className="block text-sm font-bold uppercase tracking-wider mb-2">
-              Please Submit Your Resume
-            </label>
-            <input
-              type="file"
-              accept=".pdf,.doc,.docx"
-              className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none file:mr-4 file:rounded-full file:border-2 file:border-black file:bg-transparent file:px-4 file:py-1 file:text-xs file:font-bold file:uppercase file:tracking-wider file:cursor-pointer hover:file:bg-black hover:file:text-white"
-            />
-          </div>
+          {status === "sent" && (
+            <p className="text-green-700 font-mono text-sm font-bold">
+              Application submitted successfully! We&apos;ll review it and get back to you soon.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-red-600 font-mono text-sm font-bold">{errorMsg}</p>
+          )}
 
           {/* Submit */}
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-full border-2 border-black px-10 py-4 text-sm font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors"
+            disabled={status === "sending"}
+            className="inline-flex items-center justify-center rounded-full border-2 border-black px-10 py-4 text-sm font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Submit
+            {status === "sending" ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
