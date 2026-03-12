@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+
+export const metadata: Metadata = {
+  title: "Cannabis Education — Products, Dosing & Massachusetts Laws",
+  description:
+    "Learn about cannabis product types, dosing guidelines, consumption methods, and Massachusetts cannabis laws. Start low and go slow with Pineapple Express.",
+  alternates: { canonical: "https://pineappleexpressma.com/education" },
+  openGraph: {
+    title: "Cannabis Education — Products, Dosing & Massachusetts Laws",
+    description:
+      "Learn about cannabis product types, dosing guidelines, consumption methods, and Massachusetts cannabis laws.",
+    url: "https://pineappleexpressma.com/education",
+  },
+};
 
 const productTypes = [
   {

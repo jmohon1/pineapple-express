@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Blog — Cannabis News, Education & Insights",
+  description:
+    "Read the latest from Pineapple Express on cannabis education, compliance, strain reviews, microdosing tips, and Massachusetts cannabis news.",
+  alternates: { canonical: "https://pineappleexpressma.com/blog" },
+  openGraph: {
+    title: "Blog — Cannabis News, Education & Insights",
+    description:
+      "Read the latest from Pineapple Express on cannabis education, compliance, strain reviews, and Massachusetts cannabis news.",
+    url: "https://pineappleexpressma.com/blog",
+  },
+};
 
 const blogPosts = [
   {

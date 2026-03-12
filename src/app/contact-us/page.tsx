@@ -72,9 +72,9 @@ export default function ContactPage() {
           {/* Contact Info */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-black uppercase tracking-wide mb-4">
+              <h2 className="text-lg font-black uppercase tracking-wide mb-4">
                 Get In Touch
-              </h3>
+              </h2>
               <div className="space-y-3 font-mono text-sm">
                 <p>
                   <a

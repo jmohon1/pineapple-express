@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+
+export const metadata: Metadata = {
+  title: "Terms of Use Agreement",
+  description:
+    "Read the Pineapple Express terms of use agreement governing your use of our website and cannabis delivery services. MA License MD 1306.",
+  alternates: { canonical: "https://pineappleexpressma.com/terms-and-conditions" },
+  robots: { index: false, follow: true },
+};
 
 const sections = [
   {
