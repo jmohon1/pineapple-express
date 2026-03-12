@@ -1,5 +1,15 @@
 import PageHero from "@/components/PageHero";
 
+interface Subsection {
+  subtitle?: string;
+  content: string;
+}
+
+interface Section {
+  title: string;
+  subsections: Subsection[];
+}
+
 const romanNumerals = [
   "I",
   "II",
@@ -10,7 +20,7 @@ const romanNumerals = [
   "VII",
 ];
 
-const sections = [
+const sections: Section[] = [
   {
     title: "INFORMATION WE COLLECT",
     subsections: [
