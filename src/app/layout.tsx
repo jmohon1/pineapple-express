@@ -4,6 +4,9 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AgeGate from "@/components/AgeGate";
+import CookieConsentProvider from "@/components/CookieConsentProvider";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
+import TrackingScripts from "@/components/TrackingScripts";
 
 const kanit = Kanit({
   subsets: ["latin"],
@@ -141,10 +144,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <AgeGate />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <CookieConsentProvider>
+          <AgeGate />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <CookieConsentBanner />
+          <TrackingScripts />
+        </CookieConsentProvider>
       </body>
     </html>
   );
