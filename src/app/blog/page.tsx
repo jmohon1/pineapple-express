@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import PageHero from "@/components/PageHero";
 import Link from "next/link";
+import PageHero from "@/components/PageHero";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { blogPosts } from "@/data/blog-posts";
 
 export const metadata: Metadata = {
   title: "Blog — Cannabis News, Education & Insights",
@@ -14,41 +16,13 @@ export const metadata: Metadata = {
       "Read the latest from Pineapple Express on cannabis education, compliance, strain reviews, and Massachusetts cannabis news.",
     url: "https://pineappleexpressma.com/blog",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog — Cannabis News, Education & Insights",
+    description:
+      "Read the latest from Pineapple Express on cannabis education, compliance, strain reviews, and Massachusetts cannabis news.",
+  },
 };
-
-const blogPosts = [
-  {
-    title:
-      "Is Cannabis Delivery Legal in Massachusetts — and How Does It Actually Work?",
-    slug: "is-cannabis-delivery-legal-in-massachusetts-and-how-does-it-actually-work",
-    date: "December 19, 2025",
-    categories: ["Cannabis"],
-    image: null,
-    excerpt:
-      "If you're searching for cannabis delivery in Massachusetts, you're probably asking the same question most first-time customers ask: Is it actually legal — and can it really be delivered to my house?",
-  },
-  {
-    title:
-      "Cannabis Terminology & Classifications: Main Psychoactive Component — THC",
-    slug: "cannabis-terminology-classifications-main-psychoactive-component-thc",
-    date: "February 7, 2025",
-    categories: ["Cannabis", "Cannabis Education", "Compliance"],
-    image:
-      "https://pineappleexpressma.com/wp-content/uploads/2025/02/DALL%C2%B7E-2025-02-07-06.48.42-A-modern-and-professional-blog-cover-image-for-the-article-titled-Cannabis-Terminology-Classifications_-Main-Psychoactive-Component-%E2%80%93-THC.-The-ima.webp",
-    excerpt:
-      "Understanding the difference between THC and CBD, and how different product types and classifications affect your experience as a cannabis consumer.",
-  },
-  {
-    title: "Compliance & Cannadelics",
-    slug: "compliance-cannadelics",
-    date: "January 15, 2025",
-    categories: ["Cannabis", "Compliance", "Micro Dosing"],
-    image:
-      "https://pineappleexpressma.com/wp-content/uploads/2025/01/DALL%C2%B7E-2025-01-15-13.30.14-A-sophisticated-and-modern-conceptual-art-piece-titled-Compliance-Cannadelics.-The-image-blends-themes-of-legal-cannabis-and-psychedelic-microdosi.webp",
-    excerpt:
-      "Exploring the intersection of legal compliance and the growing micro-dosing movement in the Massachusetts cannabis market.",
-  },
-];
 
 const categories = [
   "Cannabis",
@@ -58,11 +32,35 @@ const categories = [
 ];
 
 export default function BlogPage() {
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "Blog" },
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Pineapple Express Blog",
+    itemListElement: blogPosts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://pineappleexpressma.com/blog/${post.slug}`,
+      name: post.title,
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <PageHero title="Blog" />
 
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-12 md:py-16">
+        <Breadcrumbs items={breadcrumbs} />
+
         <div className="grid gap-12 lg:grid-cols-[1fr_300px]">
           {/* Posts */}
           <div className="space-y-10">
@@ -95,11 +93,19 @@ export default function BlogPage() {
                   ))}
                 </div>
                 <h2 className="text-2xl font-black uppercase tracking-wide mb-2 md:text-3xl">
-                  {post.title}
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="hover:opacity-70 transition-opacity"
+                  >
+                    {post.title}
+                  </Link>
                 </h2>
-                <p className="text-sm font-mono text-gray-500 mb-4">
+                <time
+                  dateTime={post.dateISO}
+                  className="block text-sm font-mono text-gray-500 mb-4"
+                >
                   {post.date}
-                </p>
+                </time>
                 <p className="text-gray-600 leading-relaxed">{post.excerpt}</p>
                 <Link
                   href={`/blog/${post.slug}`}
@@ -113,18 +119,6 @@ export default function BlogPage() {
 
           {/* Sidebar */}
           <aside className="space-y-10">
-            {/* Search */}
-            <div>
-              <h3 className="text-lg font-black uppercase tracking-wide mb-4">
-                Search
-              </h3>
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400"
-              />
-            </div>
-
             {/* About */}
             <div>
               <h3 className="text-lg font-black uppercase tracking-wide mb-4">
@@ -145,13 +139,12 @@ export default function BlogPage() {
               </h3>
               <div className="flex flex-col gap-2">
                 {categories.map((cat) => (
-                  <Link
+                  <span
                     key={cat}
-                    href="/blog"
-                    className="text-sm font-mono hover:opacity-70 transition-opacity"
+                    className="text-sm font-mono"
                   >
                     {cat}
-                  </Link>
+                  </span>
                 ))}
               </div>
             </div>

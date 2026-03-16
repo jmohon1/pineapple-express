@@ -89,7 +89,7 @@ export default function BrandCarousel() {
                   <div className="flex items-center justify-center py-4">
                     <Image
                       src={brand.imageUrl}
-                      alt={brand.name}
+                      alt={`${brand.name} cannabis brand logo`}
                       width={200}
                       height={200}
                       className="max-h-[120px] w-auto object-contain"

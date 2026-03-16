@@ -55,10 +55,11 @@ export default function HiringForm() {
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Name */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-name" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Your Name
         </label>
         <input
+          id="hiring-name"
           name="name"
           type="text"
           required
@@ -69,10 +70,11 @@ export default function HiringForm() {
 
       {/* Town */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-town" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Town You Live In
         </label>
         <input
+          id="hiring-town"
           name="town"
           type="text"
           required
@@ -83,10 +85,11 @@ export default function HiringForm() {
 
       {/* Email */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-email" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Your Email
         </label>
         <input
+          id="hiring-email"
           name="email"
           type="email"
           required
@@ -119,10 +122,11 @@ export default function HiringForm() {
 
       {/* Driving Experience */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-driving" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Please Describe Your Driving Experience
         </label>
         <textarea
+          id="hiring-driving"
           name="drivingExperience"
           rows={3}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
@@ -132,10 +136,11 @@ export default function HiringForm() {
 
       {/* Cannabis Experience */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-cannabis" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Please Describe Your Cannabis Industry Experience
         </label>
         <textarea
+          id="hiring-cannabis"
           name="cannabisExperience"
           rows={3}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
@@ -145,10 +150,11 @@ export default function HiringForm() {
 
       {/* Microsoft Office */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-office" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Please Describe Your Experience With Microsoft Office Suite
         </label>
         <textarea
+          id="hiring-office"
           name="microsoftOffice"
           rows={3}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
@@ -158,10 +164,11 @@ export default function HiringForm() {
 
       {/* Management Experience */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-management" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Please Describe Your Management Or Team Leader Experience
         </label>
         <textarea
+          id="hiring-management"
           name="managementExperience"
           rows={3}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
@@ -171,10 +178,11 @@ export default function HiringForm() {
 
       {/* Attention to Detail */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-detail" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Please Describe Your Attention To Detail
         </label>
         <textarea
+          id="hiring-detail"
           name="attentionToDetail"
           rows={3}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
@@ -184,10 +192,11 @@ export default function HiringForm() {
 
       {/* Type of Work Enjoyed */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-work-type" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Please Describe The Type Of Work You Enjoy
         </label>
         <textarea
+          id="hiring-work-type"
           name="typeOfWork"
           rows={3}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"
@@ -197,10 +206,11 @@ export default function HiringForm() {
 
       {/* Cover Letter */}
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="hiring-cover" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Cover Letter / Comments
         </label>
         <textarea
+          id="hiring-cover"
           name="coverLetter"
           rows={5}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"

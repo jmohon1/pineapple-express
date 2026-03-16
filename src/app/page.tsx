@@ -9,6 +9,18 @@ const BrandCarousel = dynamic(() => import("@/components/BrandCarousel"));
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://pineappleexpressma.com" },
+  openGraph: {
+    title: "Pineapple Express | Premium Massachusetts Cannabis Delivery",
+    description:
+      "Licensed Massachusetts cannabis delivery. Shop premium flower, edibles, concentrates and more delivered statewide.",
+    url: "https://pineappleexpressma.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pineapple Express | Premium Massachusetts Cannabis Delivery",
+    description:
+      "Licensed Massachusetts cannabis delivery. Shop premium flower, edibles, concentrates and more delivered statewide.",
+  },
 };
 
 export default function Home() {

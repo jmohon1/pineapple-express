@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   description:
     "Read the legal disclaimers for Pineapple Express, LLC including advertising, health products, and legal advice disclaimers. MA License MD 1306.",
   alternates: { canonical: "https://pineappleexpressma.com/disclaimer" },
+  openGraph: {
+    title: "Disclaimer",
+    description:
+      "Read the legal disclaimers for Pineapple Express, LLC.",
+    url: "https://pineappleexpressma.com/disclaimer",
+  },
   robots: { index: false, follow: true },
 };
 

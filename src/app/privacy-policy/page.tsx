@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   description:
     "Read the Pineapple Express privacy policy to learn how we collect, use, and protect your personal information. MA License MD 1306.",
   alternates: { canonical: "https://pineappleexpressma.com/privacy-policy" },
+  openGraph: {
+    title: "Privacy Policy",
+    description:
+      "Read the Pineapple Express privacy policy.",
+    url: "https://pineappleexpressma.com/privacy-policy",
+  },
   robots: { index: false, follow: true },
 };
 

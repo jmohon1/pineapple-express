@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   description:
     "Read the Pineapple Express terms of use agreement governing your use of our website and cannabis delivery services. MA License MD 1306.",
   alternates: { canonical: "https://pineappleexpressma.com/terms-and-conditions" },
+  openGraph: {
+    title: "Terms of Use Agreement",
+    description:
+      "Read the Pineapple Express terms of use agreement.",
+    url: "https://pineappleexpressma.com/terms-and-conditions",
+  },
   robots: { index: false, follow: true },
 };
 

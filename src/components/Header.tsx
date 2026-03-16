@@ -28,7 +28,7 @@ export default function Header() {
         >
           <Image
             src="/logo.svg"
-            alt="Pineapple Express"
+            alt="Pineapple Express — Massachusetts Cannabis Delivery"
             width={200}
             height={60}
             className="h-[45px] w-auto lg:h-[60px]"
@@ -38,7 +38,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex flex-1 items-center justify-center gap-10">
+        <nav aria-label="Main navigation" className="hidden lg:flex flex-1 items-center justify-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -85,7 +85,7 @@ export default function Header() {
         }`}
       >
         <div className="overflow-hidden">
-        <nav className="flex flex-col border-t border-black bg-white">
+        <nav aria-label="Mobile navigation" className="flex flex-col border-t border-black bg-white">
           {navLinks.map((link) => (
             <Link
               key={link.href}

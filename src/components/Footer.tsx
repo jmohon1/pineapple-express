@@ -60,13 +60,13 @@ export default function Footer() {
           <div>
             <Image
               src="/logo.svg"
-              alt="Pineapple Express"
+              alt="Pineapple Express — Massachusetts Cannabis Delivery"
               width={120}
               height={120}
               className="mb-6 h-[80px] w-auto"
               sizes="120px"
             />
-            <h3 className="mb-4 font-mono text-lg">Contact Us</h3>
+            <h2 className="mb-4 font-mono text-lg">Contact Us</h2>
             <div className="space-y-2 font-mono text-sm">
               <p>
                 <a
@@ -125,9 +125,9 @@ export default function Footer() {
 
             {/* Policies */}
             <div>
-              <h3 className="mb-4 text-lg font-bold uppercase tracking-wider">
+              <h2 className="mb-4 text-lg font-bold uppercase tracking-wider">
                 Policies
-              </h3>
+              </h2>
               <div className="flex flex-col gap-2 text-sm font-mono">
                 <Link
                   href="/terms-and-conditions"
@@ -179,7 +179,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 text-center text-xs font-mono text-gray-500">
           <p>
-            &copy; 2025 Pineapple Express. All Rights Reserved.
+            &copy; 2026 Pineapple Express. All Rights Reserved.
           </p>
         </div>
       </div>

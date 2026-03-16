@@ -34,10 +34,11 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="contact-name" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Your Name
         </label>
         <input
+          id="contact-name"
           name="name"
           type="text"
           required
@@ -47,10 +48,11 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="contact-email" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Your Email
         </label>
         <input
+          id="contact-email"
           name="email"
           type="email"
           required
@@ -60,10 +62,11 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="contact-subject" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Subject
         </label>
         <input
+          id="contact-subject"
           name="subject"
           type="text"
           required
@@ -73,10 +76,11 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-bold uppercase tracking-wider mb-2">
+        <label htmlFor="contact-message" className="block text-sm font-bold uppercase tracking-wider mb-2">
           Your Message (optional)
         </label>
         <textarea
+          id="contact-message"
           name="message"
           rows={6}
           className="w-full border-2 border-black bg-transparent px-4 py-3 text-sm font-mono outline-none placeholder:text-gray-400 resize-none"

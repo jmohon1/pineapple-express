@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Cannabis Education — Products, Dosing & Massachusetts Laws",
@@ -11,6 +13,12 @@ export const metadata: Metadata = {
     description:
       "Learn about cannabis product types, dosing guidelines, consumption methods, and Massachusetts cannabis laws.",
     url: "https://pineappleexpressma.com/education",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cannabis Education — Products, Dosing & Massachusetts Laws",
+    description:
+      "Learn about cannabis product types, dosing guidelines, consumption methods, and Massachusetts cannabis laws.",
   },
 };
 
@@ -43,14 +51,36 @@ const productTypes = [
 ];
 
 export default function EducationPage() {
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "Education" },
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Cannabis Education",
+    description:
+      "Learn about cannabis product types, dosing guidelines, consumption methods, and Massachusetts cannabis laws.",
+    url: "https://pineappleexpressma.com/education",
+    isPartOf: { "@id": "https://pineappleexpressma.com/#website" },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <PageHero
         title="Education"
         subtitle="Your guide to understanding cannabis products, consumption methods, and Massachusetts regulations."
       />
 
       <div className="mx-auto max-w-5xl px-6 py-12 md:px-12 md:py-16">
+        <Breadcrumbs items={breadcrumbs} />
+
         {/* Intro */}
         <section className="mb-16">
           <p className="text-gray-600 leading-relaxed mb-4">
@@ -245,7 +275,7 @@ export default function EducationPage() {
             <a
               href="https://masscannabiscontrol.com"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="inline-flex items-center justify-center rounded-full border-2 border-black px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
             >
               MA Cannabis Control Commission
@@ -253,11 +283,32 @@ export default function EducationPage() {
             <a
               href="https://www.moreaboutmj.org"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="inline-flex items-center justify-center rounded-full border-2 border-black px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
             >
               MoreAboutMJ.org
             </a>
+          </div>
+        </section>
+
+        {/* Internal Links */}
+        <section className="mt-16 border-t-2 border-black pt-8">
+          <h2 className="text-2xl font-black uppercase tracking-wide mb-4">
+            Learn More
+          </h2>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/blog"
+              className="inline-flex items-center justify-center rounded-full border-2 border-black px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
+            >
+              Read Our Blog
+            </Link>
+            <Link
+              href="/contact-us"
+              className="inline-flex items-center justify-center rounded-full border-2 border-black px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
+            >
+              Ask Us a Question
+            </Link>
           </div>
         </section>
       </div>

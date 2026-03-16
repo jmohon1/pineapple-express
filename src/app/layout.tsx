@@ -32,10 +32,10 @@ export const metadata: Metadata = {
       "Licensed Massachusetts cannabis delivery. Shop premium flower, edibles, concentrates and more delivered statewide.",
     images: [
       {
-        url: "/wp-content/uploads/2024/10/Artboard-12.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Pineapple Express Cannabis Delivery",
+        alt: "Pineapple Express — Premium Massachusetts Cannabis Delivery",
       },
     ],
   },
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Pineapple Express | Premium Massachusetts Cannabis Delivery",
     description:
       "Licensed Massachusetts cannabis delivery. Shop premium flower, edibles, concentrates and more delivered statewide.",
-    images: ["/wp-content/uploads/2024/10/Artboard-12.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -60,44 +60,75 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": `${siteUrl}/#business`,
-    name: "Pineapple Express",
-    description:
-      "Licensed Massachusetts cannabis delivery service offering premium flower, edibles, concentrates and more.",
-    url: siteUrl,
-    telephone: "+14132770277",
-    email: "kaily@pineappleexpressma.com",
-    logo: `${siteUrl}/wp-content/uploads/2024/10/Artboard-12.png`,
-    image: `${siteUrl}/wp-content/uploads/2024/10/Artboard-12.png`,
-    areaServed: {
-      "@type": "State",
-      name: "Massachusetts",
-      sameAs: "https://en.wikipedia.org/wiki/Massachusetts",
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#business`,
+      name: "Pineapple Express",
+      description:
+        "Licensed Massachusetts cannabis delivery service offering premium flower, edibles, concentrates and more.",
+      url: siteUrl,
+      telephone: "+14132770277",
+      email: "kaily@pineappleexpressma.com",
+      logo: `${siteUrl}/logo.svg`,
+      image: `${siteUrl}/og-image.png`,
+      priceRange: "$$",
+      areaServed: {
+        "@type": "State",
+        name: "Massachusetts",
+        sameAs: "https://en.wikipedia.org/wiki/Massachusetts",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "MA",
+        addressCountry: "US",
+      },
+      sameAs: [
+        "https://www.instagram.com/pineapple_expressma/",
+        "https://www.facebook.com/pineappleexpressma",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Cannabis Products",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Product", name: "Cannabis Flower" } },
+          { "@type": "Offer", itemOffered: { "@type": "Product", name: "Edibles" } },
+          { "@type": "Offer", itemOffered: { "@type": "Product", name: "Concentrates" } },
+          { "@type": "Offer", itemOffered: { "@type": "Product", name: "Topicals" } },
+          { "@type": "Offer", itemOffered: { "@type": "Product", name: "Tinctures & Oils" } },
+        ],
+      },
     },
-    address: {
-      "@type": "PostalAddress",
-      addressRegion: "MA",
-      addressCountry: "US",
-    },
-    sameAs: [
-      "https://www.instagram.com/pineapple_expressma/",
-      "https://www.facebook.com/pineappleexpressma",
-    ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Cannabis Products",
-      itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Product", name: "Cannabis Flower" } },
-        { "@type": "Offer", itemOffered: { "@type": "Product", name: "Edibles" } },
-        { "@type": "Offer", itemOffered: { "@type": "Product", name: "Concentrates" } },
-        { "@type": "Offer", itemOffered: { "@type": "Product", name: "Topicals" } },
-        { "@type": "Offer", itemOffered: { "@type": "Product", name: "Tinctures & Oils" } },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Pineapple Express",
+      url: siteUrl,
+      logo: `${siteUrl}/logo.svg`,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+14132770277",
+        contactType: "customer service",
+        email: "kaily@pineappleexpressma.com",
+        areaServed: "US",
+        availableLanguage: "English",
+      },
+      sameAs: [
+        "https://www.instagram.com/pineapple_expressma/",
+        "https://www.facebook.com/pineappleexpressma",
       ],
     },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Pineapple Express",
+      url: siteUrl,
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+  ];
 
   return (
     <html lang="en" className={kanit.variable}>

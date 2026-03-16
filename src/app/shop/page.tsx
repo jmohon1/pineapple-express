@@ -3,15 +3,21 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Shop Cannabis Products",
+  title: "Shop Cannabis Products — Flower, Edibles, Concentrates & More",
   description:
     "Browse premium cannabis flower, edibles, concentrates, topicals and more available for delivery across Massachusetts from Pineapple Express.",
   alternates: { canonical: "https://pineappleexpressma.com/shop" },
   openGraph: {
-    title: "Shop Cannabis Products",
+    title: "Shop Cannabis Products — Flower, Edibles, Concentrates & More",
     description:
       "Browse premium cannabis products available for delivery across Massachusetts.",
     url: "https://pineappleexpressma.com/shop",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shop Cannabis Products — Flower, Edibles, Concentrates & More",
+    description:
+      "Browse premium cannabis products available for delivery across Massachusetts.",
   },
 };
 
