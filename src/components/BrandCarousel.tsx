@@ -93,6 +93,9 @@ export default function BrandCarousel() {
                       width={200}
                       height={200}
                       className="max-h-[120px] w-auto object-contain"
+                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                      quality={65}
+                      loading="lazy"
                     />
                   </div>
                 </div>

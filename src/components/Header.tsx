@@ -27,11 +27,12 @@ export default function Header() {
           className="flex shrink-0 items-center justify-center border-r border-black px-6 lg:px-10"
         >
           <Image
-            src="https://pineappleexpressma.com/wp-content/uploads/2024/10/Artboard-12.png"
+            src="/logo.svg"
             alt="Pineapple Express"
             width={200}
             height={60}
             className="h-[45px] w-auto lg:h-[60px]"
+            sizes="200px"
             priority
           />
         </Link>
@@ -79,10 +80,11 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-[500px]" : "max-h-0"
+        className={`lg:hidden grid transition-[grid-template-rows] duration-300 ${
+          menuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
+        <div className="overflow-hidden">
         <nav className="flex flex-col border-t border-black bg-white">
           {navLinks.map((link) => (
             <Link
@@ -98,6 +100,7 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+        </div>
       </div>
     </header>
   );

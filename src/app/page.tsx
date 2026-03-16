@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import CTABanner from "@/components/CTABanner";
-import BrandCarousel from "@/components/BrandCarousel";
 import FAQSection from "@/components/FAQSection";
 import { faqItems } from "@/data/faq";
+
+const BrandCarousel = dynamic(() => import("@/components/BrandCarousel"));
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://pineappleexpressma.com" },

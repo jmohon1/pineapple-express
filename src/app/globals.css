@@ -23,31 +23,49 @@ body {
     Arial, sans-serif;
 }
 
-/* Animated pineapple background */
-@keyframes pineapple-bg-scroll {
-  0% {
-    background-position: 0vw 110vh;
-  }
-  100% {
-    background-position: 100vw 80vh;
-  }
+/* Animated pineapple background using GPU-accelerated transform */
+.pineapple-bg {
+  position: relative;
+  overflow: hidden;
 }
 
-.pineapple-bg {
+.pineapple-bg::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
   background-image: url("https://pineappleexpressma.com/wp-content/uploads/2024/10/pineapple-bg-final-tp.png");
   background-repeat: repeat;
+  will-change: transform;
   animation: pineapple-bg-scroll 30s linear infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes pineapple-bg-scroll {
+  0% {
+    transform: translate3d(-10%, 5%, 0);
+  }
+  100% {
+    transform: translate3d(10%, -5%, 0);
+  }
 }
 
 @media (max-width: 768px) {
-  .pineapple-bg {
+  .pineapple-bg::before {
     animation-duration: 20s;
   }
 }
 
 @media (max-width: 680px) {
-  .pineapple-bg {
+  .pineapple-bg::before {
     animation: none;
+    transform: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 

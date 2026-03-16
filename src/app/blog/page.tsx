@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
 
@@ -73,11 +74,12 @@ export default function BlogPage() {
                 {/* Featured Image */}
                 {post.image && (
                   <div className="relative mb-6 aspect-[16/9] w-full overflow-hidden bg-gray-100">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={post.image}
                       alt={post.title}
-                      className="h-full w-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 700px"
                     />
                   </div>
                 )}

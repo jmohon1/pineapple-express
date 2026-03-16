@@ -1,7 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 const socialLinks = [
   {
@@ -52,10 +51,6 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className="border-t border-black bg-white">
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-12">
@@ -64,11 +59,12 @@ export default function Footer() {
           {/* Left Column: Logo + Contact */}
           <div>
             <Image
-              src="https://pineappleexpressma.com/wp-content/uploads/2024/10/Artboard-12.png"
+              src="/logo.svg"
               alt="Pineapple Express"
               width={120}
               height={120}
               className="mb-6 h-[80px] w-auto"
+              sizes="120px"
             />
             <h3 className="mb-4 font-mono text-lg">Contact Us</h3>
             <div className="space-y-2 font-mono text-sm">
@@ -183,26 +179,12 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 text-center text-xs font-mono text-gray-500">
           <p>
-            &copy; {new Date().getFullYear()} Pineapple Express. All Rights
-            Reserved.
+            &copy; 2025 Pineapple Express. All Rights Reserved.
           </p>
         </div>
       </div>
 
-      {/* Scroll to top button */}
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-30 text-black hover:opacity-70 transition-opacity md:bottom-8 md:right-8"
-        aria-label="Scroll to top"
-      >
-        <svg
-          className="h-14 w-14 md:h-16 md:w-16"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 2l8 14H4l8-14z" />
-        </svg>
-      </button>
+      <ScrollToTopButton />
     </footer>
   );
 }

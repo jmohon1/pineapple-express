@@ -7,7 +7,7 @@ import AgeGate from "@/components/AgeGate";
 
 const kanit = Kanit({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["100", "700", "900"],
   variable: "--font-kanit",
   display: "swap",
 });
@@ -101,6 +101,10 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={kanit.variable}>
+      <head>
+        <link rel="preconnect" href="https://pineappleexpressma.com" />
+        <link rel="dns-prefetch" href="https://pineappleexpressma.com" />
+      </head>
       <body className="antialiased">
         <script
           type="application/ld+json"
